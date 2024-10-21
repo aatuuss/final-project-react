@@ -32,12 +32,16 @@ export default function Beranda() {
   const ambilFilmTrending = async () => {
     dispatch({ type: "FETCH_LOADING" }); // Set loading state
     try {
-      const response = await axios.get("https://api.themoviedb.org/3/movie/now_playing", {
-        headers: {
-          Accept: "application/json",
-          Authorization: "Bearer YOUR_API_KEY",
-        },
-      });
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/movie/now_playing",
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MmIyZDQ3MTUzOWYzMjljMGZiOTdjMGQ2MDk5MWZhNyIsIm5iZiI6MTcyOTUwOTYyNC42NzQxOTIsInN1YiI6IjY3MDQ4MzllMWI5NmI4ZWY0YzY5YjY0YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Z9BUy2yBX-TwZ5Xf4NkbUlF8rYNMg2bHntRoiRWZo3s",
+          },
+        }
+      );
 
       dispatch({ type: "FETCH_BERHASIL", payload: response.data.results });
     } catch (error) {
